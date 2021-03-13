@@ -3,16 +3,16 @@
 
 <img src="https://raw.github.com/cimba007/PCF2119/master/1615643705682.jpg" />
 
-## Connection and wiring:
+## Connection and wiring
 <img src="https://raw.github.com/cimba007/PCF2119/master/TestLCD_A2C00096100.png" width="400" />
 
 ©  Mario L. (mlatzig) @ mikrocontroller.net
 
-## Where to get the module:
+## Where to get the module
 https://www.pollin.de/p/lcd-modul-tian-ma-a2c00096100-121581
 
-## Based on work of this greate guys:
+## Based on work of this greate guys
 https://www.mikrocontroller.net/topic/434123
 
-## Displaycontroller Datasheet:
+## Displaycontroller Datasheet
 https://www.nxp.com/docs/en/data-sheet/PCF2119X.pdf
