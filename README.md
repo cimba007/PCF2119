@@ -4,7 +4,7 @@
 ![TIAN MA A2C00096100 LCD Modul - Module in action](https://raw.github.com/cimba007/PCF2119/master/1615643705682.jpg)
 
 ## Connection and wiring:
-![TIAN MA A2C00096100 LCD Modul - Connection](https://raw.github.com/cimba007/PCF2119/master/TestLCD_A2C00096100.png | width=200)
+![TIAN MA A2C00096100 LCD Modul - Connection](https://raw.github.com/cimba007/PCF2119/master/TestLCD_A2C00096100.png)
 
 ©  Mario L. (mlatzig) @ mikrocontroller.net
 
