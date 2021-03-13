@@ -1,11 +1,11 @@
-# PCF2119
- A PCF2119 library for the TIAN MA A2C00096100 LCD Modul
+# PCF2119 - An Arduino Library
+ An Arduino library for the PCF2119 used in the TIAN MA A2C00096100 LCD Modul
+
+![TIAN MA A2C00096100 LCD Modul - Module in action](https://raw.github.com/cimba007/PCF2119/master/1615643705682.jpg)
 
 ##Connection and wiring:
 ![TIAN MA A2C00096100 LCD Modul - Connection](https://raw.github.com/cimba007/PCF2119/master/TestLCD_A2C00096100.png)
 ©  Mario L. (mlatzig) @ mikrocontroller.net
-
-![TIAN MA A2C00096100 LCD Modul - Module in action](https://raw.github.com/cimba007/master/PCF2119/1615643705682.jpg)
 
 ##Where to get the module:
 https://www.pollin.de/p/lcd-modul-tian-ma-a2c00096100-121581
