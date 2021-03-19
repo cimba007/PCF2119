@@ -26,17 +26,17 @@ class pcf2119
 		pcf2119(int8_t rst_pin);
 		
 		void pcf2119::init(bool i2c_int_pullup = false);
-		void pcf2119::setup_function_set(
+		void setup_function_set(
 			uint8_t instruction_set_control = 	PCF2119_INSTRUCTION_SET_STANDARD
 			,uint8_t multiplex_mode = 			PCF2119_MUX_1_18
 			,uint8_t number_of_display_lines = 	PCF2119_NUM_LINES_1x32
 			);
-		void pcf2119::clear_screen();
-		void pcf2119::set_mux(uint8_t multiplex_mode);
-		void pcf2119::return_home(uint8_t type = PCF2119_RAM_TYPE_DDRAM);
-		void pcf2119::read_ram(uint8_t type = PCF2119_RAM_TYPE_DDRAM);
-		void pcf2119::clear_ram(uint8_t type = PCF2119_RAM_TYPE_DDRAM);
-		void pcf2119::printf(const char * format,...);
+		void clear_screen();
+		void set_mux(uint8_t multiplex_mode);
+		void return_home(uint8_t type = PCF2119_RAM_TYPE_DDRAM);
+		void read_ram(uint8_t type = PCF2119_RAM_TYPE_DDRAM);
+		void clear_ram(uint8_t type = PCF2119_RAM_TYPE_DDRAM);
+		void printf(const char * format,...);
 	private:
 		int8_t _rst_pin;
 		

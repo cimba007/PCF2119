@@ -16,7 +16,6 @@ void setup() {
   display.clear_screen();
 }
 
-uint16_t loopcounter = 0;
 void loop()
 {   
     display.return_home();
