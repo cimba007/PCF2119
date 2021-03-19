@@ -25,7 +25,7 @@ class pcf2119
 	public:
 		pcf2119(int8_t rst_pin);
 		
-		void pcf2119::init(bool i2c_int_pullup = false);
+		void init(bool i2c_int_pullup = false);
 		void setup_function_set(
 			uint8_t instruction_set_control = 	PCF2119_INSTRUCTION_SET_STANDARD
 			,uint8_t multiplex_mode = 			PCF2119_MUX_1_18
