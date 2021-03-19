@@ -11,8 +11,13 @@ void setup() {
   Serial.begin(9600);
   Serial.println("Setup");
 
-  display.init();
+  // -- Display Settings (must be called before init) --
+  //display.set_hv_pump(PCF2119_VLCD_GENERATOR_STAGES_1);	// Sufficient for 5V VCC (default)
+  //display.set_hv_pump(PCF2119_VLCD_GENERATOR_STAGES_2);	// Needed for 3.3V VCC
   display.set_mux(PCF2119_MUX_1_18);
+  
+  // -- Display Init --
+  display.init();
   display.clear_screen();
 }
 

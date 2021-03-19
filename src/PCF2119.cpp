@@ -9,7 +9,7 @@ pcf2119::pcf2119(int8_t rst_pin)
 }
 
 void pcf2119::init(bool i2c_int_pullup)
-{
+{	
 	// // Setup IO-Pins
 	// if(i2c_int_pullup)
 	// {
@@ -36,7 +36,7 @@ void pcf2119::init(bool i2c_int_pullup)
 	//Wire.write(0x20 | 0b00001);       // Function_set   Extended instructions, ignore everything else as we will set this at the end
 	setup_function_set(PCF2119_INSTRUCTION_SET_EXTENDED);
 	Wire.write(0x04 | 0b00);          // Disp_conf      Column: Left to Right, Row: Top to Bottom
-	Wire.write(0x40 | 0b00);          // HV_gen         Stage 1 = 2x voltage multiplier (Stage 1 @ 142µA, Stage 2 @ 163µA, Stage 3 @ 198µA
+	Wire.write(0x40 | _vlcd_generator_stages);          // HV_gen         Stage 1 = 2x voltage multiplier (Stage 1 @ 142µA, Stage 2 @ 163µA, Stage 3 @ 198µA
 	Wire.write(0x08 | 0b000);         // Icon_ctl       icon mode = char mode, icon blink = disabled, direct mode = off
 	if(_multiplex_mode == PCF2119_MUX_1_9)
 		Wire.write(0x80 | 0b0000000 | 45); // VLCD_set       VA, 45 = 5.42V	1:9 MUX, one charge pump
@@ -56,6 +56,12 @@ void pcf2119::set_mux(uint8_t multiplex_mode)
 	_multiplex_mode = multiplex_mode;
 	setup_function_set(_instruction_set_control,_multiplex_mode,_number_of_display_lines);
 }
+
+void pcf2119::set_hv_pump(uint8_t vlcd_generator_stages)
+{
+	_vlcd_generator_stages = vlcd_generator_stages;
+}
+
 
 void pcf2119::setup_function_set(
 	 uint8_t instruction_set_control

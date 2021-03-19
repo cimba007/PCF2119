@@ -15,6 +15,10 @@
 #define PCF2119_INSTRUCTION_SET_STANDARD	0
 #define PCF2119_INSTRUCTION_SET_EXTENDED	1
 
+#define PCF2119_VLCD_GENERATOR_STAGES_1 	0
+#define PCF2119_VLCD_GENERATOR_STAGES_2 	1
+#define PCF2119_VLCD_GENERATOR_STAGES_3 	2
+
 // ...
 #define PCF2119_RAM_TYPE_DDRAM	0
 #define PCF2119_RAM_TYPE_CGRAM	1
@@ -33,6 +37,7 @@ class pcf2119
 			);
 		void clear_screen();
 		void set_mux(uint8_t multiplex_mode);
+		void set_hv_pump(uint8_t vlcd_generator_stages);
 		void return_home(uint8_t type = PCF2119_RAM_TYPE_DDRAM);
 		void read_ram(uint8_t type = PCF2119_RAM_TYPE_DDRAM);
 		void clear_ram(uint8_t type = PCF2119_RAM_TYPE_DDRAM);
@@ -43,6 +48,7 @@ class pcf2119
 		uint8_t _multiplex_mode;
 		uint8_t _number_of_display_lines;
 		uint8_t _instruction_set_control;
+		uint8_t _vlcd_generator_stages = PCF2119_VLCD_GENERATOR_STAGES_1;
 };
 
 #endif
