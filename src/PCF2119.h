@@ -44,6 +44,7 @@ class pcf2119
 		void printf(const char * format,...);
 	private:
 		int8_t _rst_pin;
+		uint8_t pcf_position = 0;
 		
 		uint8_t _multiplex_mode;
 		uint8_t _number_of_display_lines;

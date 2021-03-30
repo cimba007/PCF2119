@@ -100,6 +100,8 @@ void pcf2119::return_home(uint8_t type)
 	Serial.print("cmd:\t"); Serial.println(cmd,HEX);
 	#endif
 	Wire.write(cmd);
+	
+	pcf_position = 0;
 }
 
 void pcf2119::read_ram(uint8_t type)
@@ -180,6 +182,7 @@ void pcf2119::clear_screen()
     Wire.write(0x00);
     Wire.write(0x01);
     Wire.endTransmission();
+	pcf_position = 0;
 }
 
 void pcf2119::printf(const char * format,...)
@@ -188,12 +191,22 @@ void pcf2119::printf(const char * format,...)
     va_start(args, format);
 	
 	char buffer[32];
-    vsnprintf(buffer,32,format,args);
-	
+    uint8_t buffer_length = vsnprintf(buffer,32,format,args);
     va_end(args);
 	
 	Wire.beginTransmission(0x3A);
 	Wire.write(0x40);   // 0x40 = last control byte, data register selected
-	Wire.write(buffer);
+	int c = 0;
+	while(buffer[c] != 0x00)
+	{
+		if(pcf_position == 13 || pcf_position == 29 || (pcf_position >= 15 && pcf_position <= 25))
+		{
+			Wire.write(' ');
+		} else {
+			Wire.write(buffer[c]);
+			c++;
+		}
+		pcf_position++;
+	}
 	Wire.endTransmission();
 }
