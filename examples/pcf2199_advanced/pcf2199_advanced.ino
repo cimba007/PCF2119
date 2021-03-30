@@ -23,13 +23,15 @@ void setup() {
 
 void loop()
 {   
+	// Attention: This display has a strange memory layout so the "home" position is 5 characters from the left.
+	// For more information see the advanced example *YOU ARE HERE*
     display.return_home();
     
     // in 1:9MUX 10chars are safe, more create ghosting on this particular display
     // in 1:18MUX all chars are safe
+    display.set_ramposition(PCF2119_DISPLAY_START_POSITION);
     display.printf("%08lums",millis());         // 10 Characters
-	
-    //display.printf("aabbccddeeffgghhiijjkk");   // 3+(halfish)+2+3+(missing)+2
-    // Anything after character #13 is "work in progress"   
+    display.printf("aabbccdde");                // 9 Characters
+    
     delay(25);
 }

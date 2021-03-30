@@ -151,6 +151,23 @@ void pcf2119::read_ram(uint8_t type)
 	#endif
 }
 
+void pcf2119::set_ramposition(uint8_t pos, uint8_t type)
+{
+    Wire.beginTransmission(0x3A);     // Slave Addr Byte (SA=0/RW=0)
+    Wire.write(0x00);                 // Command mode
+	uint8_t memory_type;
+	if(type == PCF2119_RAM_TYPE_DDRAM)
+	{
+		memory_type = 0x80;               // Set_DDRAM to 0x00
+	} else {
+		memory_type = 0x40;               // Set_CGRAM to 0x00
+	}
+	Wire.write(memory_type | pos);               // Set_CGRAM to 0x00
+    Wire.endTransmission();
+	
+	pcf_position = pos;
+}
+
 void pcf2119::clear_ram(uint8_t type)
 {
 //// Overwrite all CGRAM content (disable icons)
@@ -190,8 +207,8 @@ void pcf2119::printf(const char * format,...)
     va_list args;
     va_start(args, format);
 	
-	char buffer[32];
-    uint8_t buffer_length = vsnprintf(buffer,32,format,args);
+	char buffer[36];
+    uint8_t buffer_length = vsnprintf(buffer,36,format,args);
     va_end(args);
 	
 	Wire.beginTransmission(0x3A);
@@ -199,14 +216,28 @@ void pcf2119::printf(const char * format,...)
 	int c = 0;
 	while(buffer[c] != 0x00)
 	{
-		if(pcf_position == 13 || pcf_position == 29 || (pcf_position >= 15 && pcf_position <= 25))
+		if(pcf_position >= 32) // Back to the beginning of DDRAM-Memory
 		{
-			Wire.write(' ');
-		} else {
-			Wire.write(buffer[c]);
-			c++;
+			Wire.endTransmission();
+			
+			set_ramposition(0);
+			pcf_position = 0;
+			
+			Wire.beginTransmission(0x3A);
+			Wire.write(0x40);   // 0x40 = last control byte, data register selected
 		}
-		pcf_position++;
+		else
+		{
+			if(pcf_position == 13 || pcf_position == 29 || (pcf_position >= 15 && pcf_position <= 25))
+			{
+				Wire.write(' ');
+			} else {
+				Wire.write(buffer[c]);
+				c++;
+			}
+			pcf_position++;
+		}
+
 	}
 	Wire.endTransmission();
 }

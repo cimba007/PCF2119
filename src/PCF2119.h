@@ -23,6 +23,8 @@
 #define PCF2119_RAM_TYPE_DDRAM	0
 #define PCF2119_RAM_TYPE_CGRAM	1
 
+#define PCF2119_DISPLAY_START_POSITION 		26
+
 // the #include statment and code go here...
 class pcf2119
 {
@@ -36,6 +38,7 @@ class pcf2119
 			,uint8_t number_of_display_lines = 	PCF2119_NUM_LINES_1x32
 			);
 		void clear_screen();
+		void set_ramposition(uint8_t pos, uint8_t type = PCF2119_RAM_TYPE_DDRAM);
 		void set_mux(uint8_t multiplex_mode);
 		void set_hv_pump(uint8_t vlcd_generator_stages);
 		void return_home(uint8_t type = PCF2119_RAM_TYPE_DDRAM);
